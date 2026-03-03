@@ -1,4 +1,4 @@
-type FlashMessageType = 'created' | 'updated' | 'deleted' | 'deletedError';
+type FlashMessageType = 'created' | 'updated' | 'deleted' | 'deletedError' | 'send';
 
 const bodyColor = '#041233';
 const textColor = '#fff';
@@ -31,6 +31,9 @@ export function useSweetAlert() {
       case 'deletedError':
         title = 'No se puede eliminar el registro';
         break;
+      case 'send':
+        title = 'Mensaje enviado con éxito';
+        break;
     }
     window.Swal.fire({ ...config, title });
   };
@@ -53,7 +56,7 @@ export function useSweetAlert() {
   };
 
   const isValidMessage = (msg: string): msg is FlashMessageType => {
-    return ['created', 'updated', 'deleted', 'deletedError'].includes(msg);
+    return ['created', 'updated', 'deleted', 'deletedError', 'send'].includes(msg);
   };
 
   return {

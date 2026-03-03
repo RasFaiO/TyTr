@@ -35,7 +35,7 @@ class ProductItemRequest extends FormRequest
             'size' => ['nullable', 'string', 'max:10'],
             'weight' => ['nullable', 'string', 'max:20'],
             'color' => ['nullable', 'string', 'max:20'],
-            'unit' => ['nullable', 'string', 'in:UNIDAD,DOCENA,GRAMOS,LITROS'],
+            'unit' => ['nullable', 'string', 'in:unidad,docena,gramos,litros'],
             'state' => ['required', 'boolean'],
             'featured' => ['boolean']
         ];

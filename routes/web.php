@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, 'index'])->name('home'); //index
 Route::get('/about', [LandingController::class, 'about'])->name('about');
 Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
+Route::post('/contactme', [LandingController::class, 'contactme'])->name('contactme.send');
 
 // Rutas específicas de services
 Route::prefix('services')->name('services.')->group(function () {

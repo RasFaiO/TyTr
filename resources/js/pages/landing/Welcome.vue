@@ -4,7 +4,7 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
 import NextTours from '@/components/NextTours.vue';
 import Header from '@/components/Header.vue';
 import AppLayout from '@/layouts/LandingLayout.vue';
@@ -13,12 +13,24 @@ import QualityVar from '@/components/QualityVar.vue';
 import { FeatureItems } from '@/types/FeaturedItems';
 import { HeaderItems } from '@/types/HeaderImage';
 import { FeaturedProductItems } from '@/types/FeaturedProductItems';
+import { computed } from 'vue';
+import { PageProps } from '@/types/Paginate';
+import { useSweetAlert } from '@/composables/useSweetAlert';
 
 const props = defineProps<{
   featuredItems: FeatureItems;
   headerImages: HeaderItems;
   featuredProductItems: FeaturedProductItems;
 }>();
+
+const page = usePage<PageProps>();
+const message = computed(() => page.props.flash);
+
+const { showFlashAlert, isValidMessage } = useSweetAlert();
+const msg = message.value.message ?? '';
+if (isValidMessage(msg)) {
+  showFlashAlert(msg);
+}
 
 </script>
 <template>

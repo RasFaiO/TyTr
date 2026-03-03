@@ -47,7 +47,7 @@ const isClothes = computed<boolean>(() => {
     .includes('clothes');
 });
 
-const units = ['UNIDAD', 'DOCENA', 'GRAMOS', 'LITROS'];
+const units = ['unidad', 'docena', 'gramos', 'litros'];
 
 // Escuchar cambios en el selector de servicios
 watch(selectedProduct, (value) => {

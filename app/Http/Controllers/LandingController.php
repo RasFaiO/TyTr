@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactmeRequest;
+use App\Mail\ContactMailable;
 use App\Models\HeaderGallery;
 use App\Models\Product;
 use App\Models\ProductItem;
 use App\Models\Service;
 use App\Models\ServiceItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
 class LandingController extends Controller
@@ -65,6 +68,13 @@ class LandingController extends Controller
 		return inertia('landing/Contact');
 	}
 
+
+	public function contactme(ContactmeRequest $request) {
+		$validated = $request->validated();
+		Mail::to('Administrador@tyguatravel.com')
+		->queue(new ContactMailable($validated));
+		return redirect('/')->with('message','send');
+	}
 	/**
 	 * Show the form for editing the specified resource.
 	 */
